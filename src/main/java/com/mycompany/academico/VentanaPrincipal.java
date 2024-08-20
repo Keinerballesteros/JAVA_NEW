@@ -13,10 +13,9 @@ import javax.swing.JOptionPane;
  */
 public class VentanaPrincipal extends javax.swing.JFrame {
 
-    int ArrayMenores[] = new int[5];
-    int ArrayMayores[] = new int[5];
-    int ArrayAdultosMayores[] = new int[5];
-   
+    ArrayList<Integer> listMayores = new ArrayList<>();
+    ArrayList<Integer> listMenores  = new ArrayList<>();
+    ArrayList<Integer> listMayoresDeEdad = new ArrayList<>();
     
     public VentanaPrincipal() {
         initComponents();
@@ -93,62 +92,76 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void createActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createActionPerformed
         
-        ArrayMenores = new int[5];
-        ArrayMayores = new int[5];
-        ArrayAdultosMayores = new int[5];
-        int i = 0;
-        int j= 0;
-        int k= 0;
-        if(i<5){
-            if(j<5){
-                if(k<5){
+   
+        
         int age =  Integer.parseInt(JOptionPane.showInputDialog(rootPane, "Ingrese su edad"));
         if(age>0 && age<18){
-             JOptionPane.showMessageDialog(rootPane, "Usted es menor de edad");
-           ArrayMenores[i] = age;
-           i++;
+             
+             if(listMenores.size() <5){
+                 JOptionPane.showMessageDialog(rootPane, "Usted es menor de edad");
+                 listMenores.add(age);
+             }
+             else{
+                 JOptionPane.showMessageDialog(rootPane, "No se pueden ingresar mas edades");
+             }
         }
         else if(age>=18 && age<=60){
-            JOptionPane.showMessageDialog(rootPane, "Usted es mayor de edad");
-             ArrayMayores[i] = age;
-           j++;
+            
+            
+            if(listMayores.size() <5){
+                JOptionPane.showMessageDialog(rootPane, "Usted es mayor de edad");
+               listMayores.add(age);
+             }
+             else{
+                 JOptionPane.showMessageDialog(rootPane, "No se pueden ingresar mas edades");
+             }
         }
         else{
-            JOptionPane.showMessageDialog(rootPane, "Usted es un adulto mayor");
-            ArrayAdultosMayores[i] = age;
-           k++; 
+            
+            
+            if(listMayoresDeEdad.size() <5){
+                JOptionPane.showMessageDialog(rootPane, "Usted es un adulto mayor");
+               listMayoresDeEdad.add(age);
+             }
+             else{
+                 JOptionPane.showMessageDialog(rootPane, "No se pueden ingresar mas edades");
+             }
             }
-        }else{
-               JOptionPane.showMessageDialog(rootPane, "No hay espacio para digitar esas edades");     
-                }
-            }
-            else{
-               JOptionPane.showMessageDialog(rootPane, "No hay espacio para digitar esas edades");     
-                }
-        }else{
-               JOptionPane.showMessageDialog(rootPane, "No hay espacio para digitar esas edades");     
-                }
+        
     }//GEN-LAST:event_createActionPerformed
     
     private void searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchActionPerformed
-        for(int age:ArrayMenores){
-             JOptionPane.showMessageDialog(rootPane, "Edad "+age);
-        }
-        for(int age:ArrayMayores){
-             JOptionPane.showMessageDialog(rootPane, "Edad "+age);
-        }
-        for(int age:ArrayAdultosMayores){
-             JOptionPane.showMessageDialog(rootPane, "Edad "+age);
-        }
+       String message = "";
+
+   
+    message += "Menores de edad: ";
+    for (int age : listMenores) {
+        message += age+ ", ";
+    }
+   
+    message += "\n"; 
+   
+    message += "Mayores de edad: ";
+    for (int age : listMayores) {
+        message += age + ", ";
+    }
+    message += "\n"; 
+
+   
+    message += "Adultos mayores: ";
+    for (int age : listMayoresDeEdad) {
+        message += age +", ";
+    }
+    JOptionPane.showMessageDialog(rootPane, message);
+    // Mostrar el cuadro de diálogo
+    
     }//GEN-LAST:event_searchActionPerformed
 
     private void createMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_createMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_createMouseClicked
 
-    /**
-     * @param args the command line arguments
-     */
+  
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
