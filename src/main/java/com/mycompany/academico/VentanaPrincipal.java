@@ -112,11 +112,20 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void createActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createActionPerformed
-        
-       search.setEnabled(true);
+        boolean state = true;
+        search.setEnabled(true);
    
+        String input = JOptionPane.showInputDialog(rootPane, "Ingrese su edad");
+        for (int i = 0; i < input.length(); i++) {
+            if (!Character.isDigit(input.charAt(i))) {
+                state = false;
+                break;
+            }
+            state = true;
+        }
+        if(state){
+        int age =  Integer.parseInt(input);
         
-        int age =  Integer.parseInt(JOptionPane.showInputDialog(rootPane, "Ingrese su edad"));
         if(age>0 && age<18){
              
              if(listMenores.size() <sizeDeMenores){
@@ -148,7 +157,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                  JOptionPane.showMessageDialog(rootPane, "No se pueden ingresar mas edades de adultos mayores");
              }
             }
-        
+        }
+        else{
+            JOptionPane.showMessageDialog(rootPane, "Solo se pueden ingresar números");
+        }
     }//GEN-LAST:event_createActionPerformed
     
     private void searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchActionPerformed
